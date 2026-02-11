@@ -1,6 +1,7 @@
 <template>
   <div class="container">
-    <div class="header">
+    <!-- Page Header -->
+    <header class="header">
       <div class="logo">AI 导航站</div>
       <nav class="nav">
         <router-link to="/" class="nav-item">首页</router-link>
@@ -16,136 +17,99 @@
       </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-      <h1 class="hero-title">发现最优质的 AI 工具</h1>
-      <p class="hero-subtitle">汇聚全球 AI 工具，快速找到最适合你的 AI 解决方案</p>
-      <div class="hero-cta">
-        <button class="btn-primary">开始探索</button>
-      </div>
-    </section>
+    <!-- Main Content -->
+    <main class="main">
+      <!-- Hero Section -->
+      <section class="hero">
+        <h1 class="hero-title">发现最优质的 AI 工具</h1>
+        <p class="hero-subtitle">汇聚全球 AI 工具，快速找到最适合你的 AI 解决方案</p>
+        <div class="hero-cta">
+          <button class="btn-primary">
+            <span>开始探索</span>
+          </button>
+        </div>
+      </section>
 
-    <!-- Editor's Picks -->
-    <section class="section">
-      <h2 class="section-title">编辑精选</h2>
-      <div class="grid grid-cols-4">
-        <div v-for="i in 12" :key="i" class="tool-card">
-          <div class="card-header">
-            <div class="tool-icon">🤖</div>
-            <div class="tool-info">
-              <h3 class="tool-name">AI Tool {{ i }}</h3>
-              <p class="tool-desc">AI tool description</p>
-              <div class="tool-tags">
-                <span v-for="tag in tool.tags" :key="tag" class="tag">AI</span>
-                <span class="tag">免费</span>
-                <span class="tag">推荐</span>
-              </div>
+      <!-- Editor's Picks -->
+      <section class="section">
+        <h2 class="section-title">编辑精选</h2>
+        <div class="grid grid-cols-4 gap-6">
+          <div v-for="i in 12" :key="i" class="tool-card">
+            <div class="card-header">
+              <div class="tool-icon">🤖</div>
             </div>
           </div>
         </div>
       </section>
 
-    <!-- Hot Categories -->
-    <section class="section">
-      <h2 class="section-title">热门分类</h2>
-      <div class="grid grid-cols-2 gap-6">
-        <div v-for="i in 10" :key="i" class="category-card">
-          <div class="cat-icon">📁</div>
-          <h3 class="cat-name">分类 {{ i }}. 文本生成</h3>
-          <p class="cat-count">{{ 50 + i * 10 }} 个工具</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Search Section -->
-    <section class="search-section">
-      <div class="search-box">
-        <input
-          type="text"
-          placeholder="搜索 AI 工具（至少 2 个字符）..."
-          class="search-input"
-        />
-        <button class="search-btn">🔍</button>
-        <div class="search-suggestions" v-if="showSuggestions && suggestions.length > 0">
-          <div class="suggestion-list">
-            <div
-              v-for="suggestion in suggestions"
-              :key="suggestion.id"
-              class="suggestion-item"
-              @click="goToDetail(suggestion.id)"
-            >
-              <span class="suggestion-icon">🔍</span>
-              <span class="suggestion-name">{{ suggestion.name }}</span>
-              <span class="suggestion-tag">{{ suggestion.tags[0] }}</span>
-            </div>
+      <!-- Categories -->
+      <section class="section">
+        <h2 class="section-title">热门分类</h2>
+        <div class="grid grid-cols-2 gap-6">
+          <div v-for="i in 10" :key="i" class="category-card">
+            <div class="cat-icon">📁</div>
+            <h3 class="cat-name">分类 {{ i }}. 文本生成</h3>
+            <p class="cat-count">{{ 50 + i * 10 }} 个工具</p>
           </div>
+      </div>
+
+      <!-- Search Section -->
+      <section class="section search-section">
+        <div class="search-box">
+          <input 
+            type="text" 
+            placeholder="搜索 AI 工具（至少 2 个字符）..." 
+            class="search-input"
+          />
         </div>
       </section>
 
-    <!-- Categories Section -->
-    <section class="section">
-      <h2 class="section-title">所有分类</h2>
-      <div class="grid grid-cols-2 gap-6">
-        <div v-for="category in categories" :key="category.id" class="category-card" @click="goToCategory(category.id)">
-          <div class="cat-icon">{{ category.icon }}</div>
-          <h3 class="cat-name">{{ category.name }}</h3>
-          <p class="cat-desc">{{ category.description }}</p>
-          <span class="cat-count">{{ category.toolCount }} 个工具</span>
+      <!-- Categories Section -->
+      <section class="categories-section">
+        <h2 class="section-title">所有分类</h2>
+        <div class="grid grid-cols-2 gap-6">
+          <div v-for="category in categories" :key="category.id" class="category-card" @click="goToCategory(category.id)">
+            <div class="cat-icon">{{ category.icon }}</div>
+            <h3 class="cat-name">{{ category.name }}</h3>
+            <p class="cat-desc">{{ category.description }}</p>
+            <span class="cat-count">{{ category.toolCount }} 个工具</span>
+          </div>
         </div>
       </div>
-    </section>
+  </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>&copy; 2026 AI Navigation Site. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="/about" class="footer-link">关于我们</a>
+        <a href="/submit" class="footer-link">提交工具</a>
+        <a href="/about#contact" class="footer-link">联系我们</a>
+      </div>
+    </footer>
   </div>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <p>&copy; 2026 AI Navigation Site. All rights reserved.</p>
-    <div class="footer-links">
-      <a href="/about" class="footer-link">关于我们</a>
-      <a href="/submit" class="footer-link">提交工具</a>
-      <a href="/about#contact" class="footer-link">联系我们</a>
-    </div>
-  </footer>
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
+import { useSearch } from '~/composables/useSearch'
 
-const searchQuery = ref('')
-const showSuggestions = ref(false)
-const suggestions = ref([
-  {
-    id: 'tool-1',
-    name: 'ChatGPT',
-    slug: 'chatgpt',
-    description: 'OpenAI 开发的对话式 AI 助手',
-    icon: '🤖',
-    category: '智能对话',
-    tags: ['AI', '聊天', 'AI', '推荐']
-  },
-  {
-    id: 'tool-2',
-    name: 'Claude',
-    slug: 'claude',
-    description: 'Anthropic 开发的 AI 助手，具备强大的文本生成和对话能力',
-    icon: '🤖',
-    category: '智能对话',
-    tags: ['AI', '聊天', '写作', 'AI', 'Claude', '推荐'],
-    icon: '🤖'
-  },
-  {
-    id: 'tool-3',
-    name: 'Perplexity',
-    slug: 'plexity',
-    description: 'Perplexity AI 开发的 AI 助手，具备强大的信息检索和生成能力',
-    icon: '🤖',
-    category: '智能对话',
-    tags: ['AI', '搜索', '推荐', '免费', 'Plexity'],
-    icon: '🤖'
-  }
-])
+interface Category {
+  id: string
+  name: string
+  slug: string
+  icon: string
+  description: string
+  toolCount: number
+}
+
+const router = useRouter()
+const currentPage = ref(1)
+const pageSize = 24
 
 // 模拟分类数据
-const categories = ref([
+const categories = ref<Category[]>([
   {
     id: 'cat-1',
     name: '智能对话',
@@ -164,61 +128,64 @@ const categories = ref([
   },
   {
     id: 'cat-3',
+    name: '音频工具',
+    slug: 'audio-tools',
+    icon: '🎵',
+    description: 'AI 音频和语音识别工具，包括语音识别、语音合成、音频编辑',
+    toolCount: 34
+  },
+  {
+    id: 'cat-4',
+    name: '视频工具',
+    slug: 'video-tools',
+    icon: '🎬',
+    description: 'AI 视频生成和编辑工具',
+    toolCount: 89
+  },
+  {
+    id: 'cat-5',
+    name: '智能对话',
+    slug: 'ai-chat',
+    icon: '🤖',
+    description: 'AI 对话和聊天相关工具，包括 ChatGPT、Claude、文心一言等',
+    toolCount: 125
+  },
+  {
+    id: 'cat-6',
     name: '编程辅助',
     slug: 'coding-assistant',
     icon: '👨',
     description: 'AI 编程辅助工具，包括 GitHub Copilot、Cursor、Runway 等',
-    toolCount: 30
+    toolCount: 156
+  },
+  {
+    id: 'cat-7',
+    name: '学习资源',
+    slug: 'learning-resources',
+    icon: '📚',
+    description: 'AI 学习资源，包括教程、文档、视频教程',
+    toolCount: 50
+  },
+  {
+    id: 'cat-8',
+    name: '企业服务',
+    slug: 'enterprise',
+    icon: '🏢',
+    description: '企业级 AI 解决方案，包括大厂官方 API、企业版 AI 工具',
+    toolCount: 45
+  },
+  {
+    id: 'cat-9',
+    name: '模型训练',
+    slug: 'model-training',
+    icon: '🧠',
+    description: 'AI 模型和训练资源，包括 HuggingFace、Stable Diffusion 等',
+    toolCount: 18
   }
 ])
 
-// 实时搜索（200ms 内）
-let searchTimer: NodeJS.Timeout | null = null
-
-// 搜索逻辑
-const submitSearch = () => {
-  if (searchQuery.value.trim().length >= 2) {
-    clearTimeout(searchTimer)
-    searchTimer = setTimeout(() => {
-      showSuggestions.value = true
-      // 实时搜索建议
-      const query = searchQuery.value.toLowerCase()
-      const filtered = suggestions.value.filter(tool => {
-        const name = tool.name.toLowerCase()
-        const desc = tool.description.toLowerCase()
-        const tags = tool.tags.map(t => t.toLowerCase())
-        return name.includes(query) || desc.includes(query) || tags.some(tag => tag.toLowerCase().includes(query))
-      }).slice(0, 8)
-
-      if (filtered.length > 0) {
-        suggestions.value = filtered.map((tool, index) => ({
-          tool,
-          position: { x: index, y: index }
-        }))
-
-      // 执行搜索
-      alert('开始搜索...')
-  }
-}
-
-const hideSuggestions = () => {
-  showSuggestions.value = false
-}
-
-const goToTool = (id: string) => {
-  navigateToTool(id)
-}
-
 const goToCategory = (id: string) => {
   navigateToCategory(id)
-}
-
-const navigateToTool = (id: string) => {
-  navigateTo({ path: `/tool/${id}` })
-}
-
-const navigateToCategory = (id: string) => {
-  navigateTo({ path: `/category/${id}` })
 }
 </script>
 
@@ -227,12 +194,14 @@ const navigateToCategory = (id: string) => {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
+  background: #f8fafc;
   min-height: 100vh;
 }
 
 .header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 20px 0;
   border-bottom: 1px solid #e0e0e0;
   margin-bottom: 40px;
@@ -240,8 +209,8 @@ const navigateToCategory = (id: string) => {
 
 .logo {
   font-size: 1.5rem;
-  font-weight:  700;
-  color: #1a1a1a;
+  font-weight: 700;
+  color: #1a1a1a1a1a;
   text-decoration: none;
   cursor: pointer;
   transition: color 0.3s ease;
@@ -273,13 +242,13 @@ const navigateToCategory = (id: string) => {
 
 .btn-secondary {
   padding: 8px 16px;
-  background: white;
-  border: 1px solid #d1d5db;
+  background: #f5f5f5;
+  border: 1px solid #d1d1d1d1;
   border-radius: 6px;
   cursor: pointer;
   transition: all 0.3s ease;
   font-size: 14px;
-  font-weight:  500;
+  font-weight: 500;
 }
 
 .btn-secondary:hover {
@@ -297,12 +266,22 @@ const navigateToCategory = (id: string) => {
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
 }
 
 .btn-primary:hover {
   background: linear-gradient(135deg, #5c7c 8%, #667eea 100%);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transform: translateY(-2px);
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin-top: 20px;
 }
 
 .hero {
@@ -336,16 +315,15 @@ const navigateToCategory = (id: string) => {
   background: white;
   border-radius: 12px;
   padding: 40px 20px;
-  border: 1px solid #e5e7eb;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
   margin-bottom: 60px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 .section-title {
   font-size: 1.5rem;
   font-weight: 600;
-  color: #1a1a1a;
-  margin-bottom: 30px;
+  color: #1a1a1a1a;
+  margin-bottom: 24px;
 }
 
 .grid {
@@ -356,16 +334,14 @@ const navigateToCategory = (id: string) => {
 .grid-cols-4 {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
 }
 
 .grid-cols-2 {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
 }
 
-.card {
+.tool-card {
   background: white;
   border: 1px solid #e5e7eb;
   border-radius: 8px;
@@ -374,23 +350,23 @@ const navigateToCategory = (id: string) => {
   transition: all 0.3s ease;
 }
 
-.card:hover {
-  border-color: #1890ff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+.tool-card:hover {
+  border-color: #10b981;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
   transform: translateY(-2px);
 }
 
 .card-header {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
   margin-bottom: 12px;
 }
 
 .tool-icon {
-  width: 48px;
-  height: 48px;
-  background: #f3f4f6;
+  width: 64px;
+  height: 64px;
+  background: #f5f5f5;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -398,49 +374,66 @@ const navigateToCategory = (id: string) => {
   font-size: 32px;
 }
 
-.tool-info {
-  flex: 1;
-  min-width: 0;
+.cat-card {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 24px;
+  text-align: center;
+  transition: all 0.3s ease;
 }
 
-.tool-name {
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: #1a1a1a;
+.cat-card:hover {
+  border-color: #10b981;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+.cat-icon {
+  font-size: 2rem;
+}
+
+.cat-name {
   margin-bottom: 8px;
-  margin: 0;
 }
 
-.tool-desc {
+.cat-desc {
   color: #666;
   font-size: 0.875rem;
-  margin: 0;
   margin-bottom: 12px;
-  line-height: 1.5;
-  display: -webkit-box;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
-.tool-tags {
+.cat-count {
+  color: #999;
+  font-size: 0.875rem;
+}
+
+.pagination {
+  max-width: 600px;
+  margin: 0 auto;
   display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
 }
 
-.tag {
-  background: #e0f2ff;
+.pagination-info {
   color: #666;
-  padding: 2px 8px;
-  border-radius: 4px;
-  font-size: 0.75rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  font-size: 0.875rem;
 }
 
-.tag:hover {
-  background: #409eff;
-  color: white;
+.grid {
+  display: grid;
+  gap: 24px;
+}
+
+.grid-cols-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.grid-cols-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
 }
 
 .cat-card {
@@ -449,12 +442,11 @@ const navigateToCategory = (id: string) => {
   border-radius: 8px;
   padding: 24px;
   cursor: pointer;
-  transition: all 0.3s ease;
 }
 
 .cat-card:hover {
   border-color: #10b981;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
   transform: translateY(-2px);
 }
 
@@ -464,33 +456,26 @@ const navigateToCategory = (id: string) => {
 }
 
 .cat-name {
-  font-size: 1.125rem;
-  font-weight: 600;
-  color: #111;
-  margin-bottom: 8px;
+  font-size: 1.25rem;
 }
 
 .cat-desc {
   color: #666;
-  font-size: 0.875rem;
-  margin: 0;
-  margin-bottom: 16px;
-  line-height: 1.5;
-  margin-bottom: 8px;
-  line-height: 1.5;
+  margin-bottom: 12px;
 }
 
 .cat-count {
   color: #999;
   font-size: 0.875rem;
-  font-weight: 500;
-  margin: 0;
+}
+
+.pagination {
+  margin-top: 30px;
 }
 
 .search-section {
   max-width: 600px;
   margin: 0 auto;
-  padding: 40px 20px;
 }
 
 .search-box {
@@ -503,7 +488,7 @@ const navigateToCategory = (id: string) => {
   width: 100%;
   padding: 16px 20px;
   font-size: 16px;
-  border: 1px solid #dcdcdc;
+  border: 1px solid #d1d5db;
   border-radius: 8px;
   transition: border-color 0.3s ease;
 }
@@ -511,141 +496,26 @@ const navigateToCategory = (id: string) => {
 .search-input:focus {
   border-color: #10b981;
   outline: none;
-  box-shadow: 0 0 4px rgba(16, 16, 235, 0, 0, 0.04);
+  box-shadow: 0 4px 12px rgba(16, 16, 235, 0, 0, 0.1);
 }
 
-.search-btn {
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.suggestions {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  background: white;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-  z-index: 10;
-}
-
-.suggestion-list {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  max-height: 80px;
-  overflow-y: auto;
-}
-
-.suggestion-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  padding: 16px;
-  background: white;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.suggestion-item:hover {
-  background: #f5f5f5;
-}
-
-.suggestion-icon {
-  font-size: 20px;
-}
-
-.suggestion-name {
-  flex: 1;
-  font-size: 14px;
-  font-weight: 500;
-  color: #1a1a1a;
-}
-
-.suggestion-tag {
-  background: #e0f2ff;
-  color: white;
-  padding: 2px 8px;
-  border-radius: 4px;
-  font-size: 12px;
-  font-weight: 500;
-}
-
-.categories-section {
-  margin-top: 60px;
+.category-section {
+  margin-bottom: 60px;
 }
 
 .categories-section h2 {
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   font-weight: 600;
-  color: #1a1a1a;
-  margin-bottom: 16px;
+  color: #1a1a1a1a;
+  margin-bottom: 30px;
 }
 
 .grid {
-  display: grid;
   gap: 24px;
 }
 
-.grid-cols-4 {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-}
-
-.grid-cols-2 {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-}
-
-.cat-card {
-  background: white;
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
-  padding: 24px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.cat-card:hover {
-  border-color: #10b981;
-  box-shadow:0 4px 16px rgba(0, 0, 0, 0.04);
-  transform: translateY(-2px);
-}
-
-.cat-icon {
-  font-size: 2rem;
-  margin-bottom: 16px;
-}
-
-.cat-name {
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: #111;
-  margin-bottom: 4px;
-}
-
-.cat-desc {
-  color: #666;
-  font-size: 0.875rem;
-  margin: 0;
-  line-height: 1.5;
-}
-
-.cat-count {
-  color: #999;
-  font-size: 0.875rem;
-  font-weight:  500;
-  margin: 0;
-}
-
 .footer {
-  background: #f8f9fa;
+  background: #f8fafa;
   padding: 40px 20px;
   border-top: 1px solid #e0e0e0;
   margin-top: 60px;
@@ -667,13 +537,31 @@ const navigateToCategory = (id: string) => {
   color: #1890ff;
 }
 
+.footer-link {
+  text-decoration: none;
+}
+
 @media (max-width: 768px) {
   .container {
     padding: 12px;
   }
 
-  .grid-cols-4 {
+  .grid-cols-4,
+  .grid-cols-2 {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .grid-cols-4,
+  .grid-cols-2 {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .card {
+    padding: 16px;
   }
 }
 </style>
