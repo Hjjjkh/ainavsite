@@ -3,9 +3,9 @@
 ## 阶段 1：MVP（最小可行产品）- 10-12 周
 
 ### 1.1 项目初始化
-- [ ] 创建项目基础结构
-- [ ] 配置开发环境（Node.js、pnpm）
-- [ ] 初始化 Git 仓库
+- [x] 创建项目基础结构
+- [x] 配置开发环境（Node.js、pnpm）
+- [x] 初始化 Git 仓库
 - [ ] 配置 ESLint、Prettier、Husky
 - [ ] 创建 README.md
 
